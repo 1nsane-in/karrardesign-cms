@@ -12,30 +12,24 @@ interface Project {
   image: string;
   title: string;
   slug: string;
-  number: string;
   category: string;
   service: string;
   location: string;
-}
-
-interface ProjectDetail {
-  title: string;
-  category: string;
-  service: string;
-  location: string;
-  year: string;
-  area: string;
-  description: string;
-  fullDescription: string;
-  description2?: string;
-  images: string[];
+  details: {
+    category: string;
+    service: string;
+    location: string;
+    year: string;
+    area: string;
+    description: string;
+    fullDescription: string;
+    description2?: string;
+    images: string[];
+  };
 }
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
-  const [projectData, setProjectData] = useState<Record<string, ProjectDetail>>(
-    {}
-  );
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -45,8 +39,7 @@ export default function ProjectsPage() {
           "https://gist.githubusercontent.com/TusharSahu02/91087bfc220058c1f4624c8586c80462/raw/karrar-projects.json"
         );
         const data = await response.json();
-        setProjects(data.projects || []);
-        setProjectData(data.projectData || {});
+        setProjects(data || []);
       } catch (error) {
         console.error("Error fetching projects:", error);
       } finally {
@@ -83,72 +76,80 @@ export default function ProjectsPage() {
                 <p>Loading projects...</p>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {projects.map((project, index) => {
-                    const details = projectData[project.slug];
-                    return (
-                      <Card key={index} className="overflow-hidden">
-                        <div className="aspect-video overflow-hidden">
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-full object-cover"
-                          />
+                  {projects.map((project, index) => (
+                    <Card
+                      key={index}
+                      className="overflow-hidden rounded-2xl shadow-sm border hover:shadow-md transition-all"
+                    >
+                      <div className="aspect-video overflow-hidden bg-gray-50">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+
+                      <CardHeader className="pb-2">
+                        <div className="flex justify-between items-center">
+                          <CardTitle className="text-xl font-semibold">
+                            {project.title}
+                          </CardTitle>
+                          {project.details?.year && (
+                            <span className="text-xs bg-black/5 px-2 py-1 rounded-full text-gray-600">
+                              {project.details.year}
+                            </span>
+                          )}
                         </div>
-                        <CardHeader>
-                          <div className="flex justify-between items-start">
-                            <CardTitle className="text-lg">
-                              {project.title}
-                            </CardTitle>
+                      </CardHeader>
+
+                      <CardContent>
+                        <p className="text-sm text-gray-500 mb-4 leading-relaxed">
+                          {project.details?.description ||
+                            "No description available"}
+                        </p>
+
+                        <div className="grid grid-cols-2 gap-3 text-sm">
+                          <div className="flex flex-col">
+                            <span className="font-medium text-gray-400 text-xs uppercase">
+                              Service
+                            </span>
+                            <span className="font-semibold text-gray-800">
+                              {project.service}
+                            </span>
                           </div>
-                        </CardHeader>
-                        <CardContent>
-                          <p className="text-sm text-muted-foreground mb-3">
-                            {details?.description || "No description available"}
-                          </p>
-                          <div className="space-y-2">
-                            <div>
-                              <span className="text-sm font-medium">
-                                Service:{" "}
-                              </span>
-                              <span className="text-sm">{project.service}</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-medium">
-                                Category:{" "}
-                              </span>
-                              <span className="text-sm">
-                                {details?.category || project.category}
-                              </span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-medium">
-                                Location:{" "}
-                              </span>
-                              <span className="text-sm">
-                                {project.location}
-                              </span>
-                            </div>
-                            {details?.year && (
-                              <div>
-                                <span className="text-sm font-medium">
-                                  Year:{" "}
-                                </span>
-                                <span className="text-sm">{details.year}</span>
-                              </div>
-                            )}
-                            {details?.area && (
-                              <div>
-                                <span className="text-sm font-medium">
-                                  Area:{" "}
-                                </span>
-                                <span className="text-sm">{details.area}</span>
-                              </div>
-                            )}
+
+                          <div className="flex flex-col">
+                            <span className="font-medium text-gray-400 text-xs uppercase">
+                              Category
+                            </span>
+                            <span className="font-semibold text-gray-800">
+                              {project.details?.category || project.category}
+                            </span>
                           </div>
-                        </CardContent>
-                      </Card>
-                    );
-                  })}
+
+                          <div className="flex flex-col">
+                            <span className="font-medium text-gray-400 text-xs uppercase">
+                              Location
+                            </span>
+                            <span className="font-semibold text-gray-800">
+                              {project.location}
+                            </span>
+                          </div>
+
+                          {project.details?.area && (
+                            <div className="flex flex-col">
+                              <span className="font-medium text-gray-400 text-xs uppercase">
+                                Area
+                              </span>
+                              <span className="font-semibold text-gray-800">
+                                {project.details.area}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
               )}
             </div>

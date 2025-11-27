@@ -1,13 +1,7 @@
 "use client";
 
 import * as React from "react";
-import {
-  IconChartBar,
-  IconDashboard,
-  IconFolder,
-  IconListDetails,
-  IconUsers,
-} from "@tabler/icons-react";
+import { IconListDetails } from "@tabler/icons-react";
 
 import { NavMain } from "@/components/nav-main";
 import {
@@ -17,6 +11,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { FolderOpen, MessageSquare, Users } from "lucide-react";
 
 const data = {
   user: {
@@ -28,22 +23,22 @@ const data = {
     {
       title: "Dashboard",
       url: "/",
-      icon: IconDashboard,
+      icon: Users,
     },
     {
       title: "Clients",
       url: "/clients",
-      icon: IconListDetails,
+      icon: Users,
     },
     {
       title: "Projects",
       url: "/projects",
-      icon: IconChartBar,
+      icon: FolderOpen,
     },
     {
       title: "Testimonial",
       url: "/testimonial",
-      icon: IconFolder,
+      icon: MessageSquare,
     },
   ],
 };
@@ -55,7 +50,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <div>
-              {/* TODO : add logo */}
               <span className="text-base font-semibold">
                 Karrar Design Projects{" "}
               </span>
@@ -66,9 +60,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
-      {/* <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter> */}
     </Sidebar>
   );
 }

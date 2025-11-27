@@ -1,0 +1,192 @@
+[
+  {
+    "image": "https://cdn.jsdelivr.net/gh/tussxar/karrar-images/images/sota-salon/sota-01.jpg",
+    "title": "Sota salon",
+    "slug": "sota-salon",
+    "category": "Residential",
+    "service": "Interior Design",
+    "location": "Jumeirah village, Dubai",
+    "details": {
+      "category": "Commercial",
+      "service": "Interior Design",
+      "location": "Jumeirah village, Dubai",
+      "year": "2024",
+      "area": "2,500 sq ft",
+      "description": "A modern salon design that combines luxury with functionality, creating an elegant space for beauty treatments in Dubai's vibrant Jumeirah village.",
+      "fullDescription": "Sota salon represents a perfect blend of contemporary design and luxurious comfort. Located in the heart of Jumeirah village, this salon project transforms a commercial space into a sophisticated beauty sanctuary. Our design philosophy centered around creating a calming atmosphere while maintaining operational efficiency for staff and comfort for clients.",
+      "images": [
+        "https://cdn.jsdelivr.net/gh/tussxar/karrar-images/images/sota-salon/sota-01.jpg",
+        "https://cdn.jsdelivr.net/gh/tussxar/karrar-images/images/sota-salon/sota-02.jpeg"
+      ]
+    }
+  },
+  {
+    "image": "https://res.cloudinary.com/dhctsorc0/image/upload/v1763909434/38_bq0id7.jpg",
+    "title": "Mandaloun lebanese restaurant",
+    "slug": "mandaloun-lebanese-restaurant",
+    "category": "Residential",
+    "service": "Interior Design",
+    "location": "Dubai International Financial center, Dubal",
+    "details": {
+      "category": "Commercial",
+      "service": "Interior Design",
+      "location": "Dubai International Financial center, Dubai",
+      "year": "2024",
+      "area": "4,000 sq ft",
+      "description": "An authentic Lebanese restaurant design that captures the essence of Middle Eastern hospitality while incorporating modern dining concepts.",
+      "fullDescription": "Mandaloun Lebanese restaurant brings the warmth and authenticity of Lebanese culture to Dubai's prestigious DIFC district. This project challenged us to create an atmosphere that honors traditional Lebanese design elements while meeting the sophisticated expectations of the financial district's clientele.",
+      "images": [
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763909434/38_bq0id7.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763909400/27_v7gxsn.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763909478/23_i86icr.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763909508/5_kctydk.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763909534/37_ajggx5.jpg"
+      ]
+    }
+  },
+  {
+    "image": "https://res.cloudinary.com/dhctsorc0/image/upload/v1763909212/l-villa_o1vrt5.jpg",
+    "title": "Luxurious villa",
+    "slug": "luxurious-villa",
+    "category": "Residential",
+    "service": "Interior Design",
+    "location": "Emirates Hills, Dubai",
+    "details": {
+      "category": "Residential",
+      "service": "Interior Design",
+      "location": "Emirates Hills, Dubai",
+      "year": "2024",
+      "area": "8,500 sq ft",
+      "description": "A prestigious villa project in Emirates Hills showcasing opulent design and sophisticated living spaces for discerning clients.",
+      "fullDescription": "This luxurious villa in Emirates Hills represents the pinnacle of residential design excellence. Set in one of Dubai's most exclusive neighborhoods, this project demanded the highest standards of craftsmanship and attention to detail, creating spaces that reflect both grandeur and intimate family living.",
+      "images": [
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763909212/l-villa_o1vrt5.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763909212/l-villa2_wrgg0o.jpg"
+      ]
+    }
+  },
+  {
+    "image": "https://res.cloudinary.com/dhctsorc0/image/upload/v1763909819/29_nmicse.jpg",
+    "title": "Hafez Mustafa store",
+    "slug": "hafez-mustafa-store-souk",
+    "category": "Residential",
+    "service": "Interior Design",
+    "location": "Souk madinat Jumeirah, Dubai",
+    "details": {
+      "category": "Commercial",
+      "service": "Interior Design",
+      "location": "Souk madinat Jumeirah, Dubai",
+      "year": "2024",
+      "area": "1,800 sq ft",
+      "description": "A traditional Turkish confectionery store design that captures the authentic atmosphere of Istanbul's historic bazaars.",
+      "fullDescription": "A traditional Turkish confectionery store design that captures the authentic atmosphere of Istanbul's historic bazaars. Located in the prestigious Souk Madinat Jumeirah, this Hafez Mustafa store brings the authentic charm of Turkish confectionery culture to Dubai. The design pays homage to the brand's Ottoman heritage while creating an inviting retail environment for modern shoppers.",
+      "description2": "During design stage we had the challenge of providing enough cooling, the available chilled water was not enough from Mall side, we have done special HVAC design and added extra chilled water by providing big unit on the roof, in the beginning it was planned to shift the unit by helicopter, due to wind pressure, we have managed to deliver by crane, why highlighting this point because the Souk Madinat Jumeirah is traditional Arabic design, having very limited space on the roof top",
+      "images": [
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763909819/29_nmicse.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910355/3_izoklv.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910408/40_ul3dog.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910408/6_f9webl.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910406/35_bkm9gz.jpg"
+      ]
+    }
+  },
+  {
+    "image": "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910669/18_zayzvf.jpg",
+    "title": "Entrecote Cafe de Paris",
+    "slug": "cafe-entrecote",
+    "category": "Residential",
+    "service": "Interior Design",
+    "location": "Dubai Mall",
+    "details": {
+      "category": "Commercial",
+      "service": "Interior Design",
+      "location": "Dubai",
+      "year": "2024",
+      "area": "3,200 sq ft",
+      "description": "A contemporary commercial space that blends traditional Middle Eastern elements with modern design principles.",
+      "fullDescription": "Al Mandalo represents a harmonious fusion of cultural heritage and contemporary design. This commercial project in Dubai showcases our ability to honor traditional aesthetics while creating functional, modern spaces that serve today's business needs.",
+      "images": [
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910655/15_dwhnoa.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910669/18_zayzvf.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763911343/11_xnqp9q.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763911342/17_yeguhk.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763911341/16_n3m0qk.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763911341/13_plka2m.jpg"
+      ]
+    }
+  },
+  {
+    "image": "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910408/40_ul3dog.jpg",
+    "title": "Hafez Mustafa Store",
+    "slug": "hafez-mustafa-store-jbr",
+    "category": "Residential",
+    "service": "Interior Design",
+    "location": "Jumeirah beach residence, Dubai",
+    "details": {
+      "category": "Commercial",
+      "service": "Interior Design",
+      "location": "Jumeirah beach residence, Dubai",
+      "year": "2024",
+      "area": "1,600 sq ft",
+      "description": "A beachside location of the renowned Turkish confectionery brand, designed to appeal to both tourists and residents.",
+      "fullDescription": "A beachside location of the renowned Turkish confectionery brand, designed to appeal to both tourists and residents. This JBR location of Hafez Mustafa combines the brand's traditional Turkish heritage with a contemporary beachside aesthetic. The design creates an inviting atmosphere for both international tourists and local residents enjoying Dubai's vibrant beach district.",
+      "description2": "The challenge here we faced to provided 100% closure of mezzanine floor to accommodate VVIP office for client, As per the rule only 2/3rd slab can be covered however we took the challenge and convinced the authority by means of providing very highly technical drawings showing the possibility of approvals, The approval received and we have managed to provided 100% closure of mezzanine floor for VVIP office and adding beautiful PVD coated handrail",
+      "images": [
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763909819/29_nmicse.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910355/3_izoklv.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910408/40_ul3dog.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910408/6_f9webl.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910406/35_bkm9gz.jpg"
+      ]
+    }
+  },
+  {
+    "image": "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910408/40_ul3dog.jpg",
+    "title": "Hafez Mustafa Store",
+    "slug": "hafez-mustafa-store-moe",
+    "category": "Residential",
+    "service": "Interior Design",
+    "location": "Mall of Emirates, Dubai",
+    "details": {
+      "category": "Commercial",
+      "service": "Interior Design",
+      "location": "Mall of Emirates, Dubai",
+      "year": "2024",
+      "area": "2,000 sq ft",
+      "description": "A flagship store location in one of Dubai's premier shopping destinations, showcasing the full range of Turkish delicacies.",
+      "fullDescription": "Situated in the prestigious Mall of Emirates, this flagship Hafez Mustafa store represents the brand's commitment to excellence. The design creates an immersive experience that transports visitors to the historic streets of Istanbul while maintaining the luxury shopping environment expected in this premier mall.",
+      "images": [
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763909819/29_nmicse.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910355/3_izoklv.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910408/40_ul3dog.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910408/6_f9webl.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910406/35_bkm9gz.jpg"
+      ]
+    }
+  },
+  {
+    "image": "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910408/6_f9webl.jpg",
+    "title": "Hafez Mustafa Store",
+    "slug": "hafez-mustafa-store-dhm",
+    "category": "Residential",
+    "service": "Interior Design",
+    "location": "Dubai Hills Mall, Dubai",
+    "details": {
+      "category": "Commercial",
+      "service": "Interior Design",
+      "location": "Dubai Hills Mall, Dubai",
+      "year": "2024",
+      "area": "1,900 sq ft",
+      "description": "A modern interpretation of traditional Turkish confectionery retail in Dubai's newest luxury shopping destination.",
+      "fullDescription": "A modern interpretation of traditional Turkish confectionery retail in Dubai's newest luxury shopping destination. The Dubai Hills Mall location represents Hafez Mustafa's expansion into Dubai's growing residential communities. This store design balances the brand's rich Ottoman heritage with contemporary retail concepts, creating a welcoming space for families and confectionery enthusiasts.",
+      "description2": "We had two main challenges in this store, the load was limited and exhaust system was not in place, we have designed MEP in such a way to suit the load requirements and introduced self-extraction system as first time in the mall",
+      "images": [
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763909819/29_nmicse.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910355/3_izoklv.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910408/40_ul3dog.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910408/6_f9webl.jpg",
+        "https://res.cloudinary.com/dhctsorc0/image/upload/v1763910406/35_bkm9gz.jpg"
+      ]
+    }
+  }
+]

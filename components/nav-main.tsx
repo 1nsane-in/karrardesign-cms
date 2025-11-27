@@ -1,10 +1,9 @@
 "use client";
 
-import { IconCirclePlusFilled, IconMail, type Icon } from "@tabler/icons-react";
+import { type Icon } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -16,7 +15,7 @@ import {
 export function NavMain({
   items,
 }: {
-  items: {
+  readonly items: readonly {
     title: string;
     url: string;
     icon?: Icon;
@@ -30,12 +29,15 @@ export function NavMain({
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton 
-                tooltip={item.title} 
-                asChild 
+              <SidebarMenuButton
+                tooltip={item.title}
+                asChild
                 isActive={pathname === item.url}
               >
-                <Link href={item.url} className={pathname === item.url ? "text-yellow-500" : ""}>
+                <Link
+                  href={item.url}
+                  className={pathname === item.url ? "text-yellow-500" : ""}
+                >
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
                 </Link>

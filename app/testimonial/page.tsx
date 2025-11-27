@@ -3,149 +3,37 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { useEffect, useState } from "react";
-
-interface Testimonial {
-  id: string;
-  quote: string;
-  name: string;
-  description: string;
-}
+import { useState } from "react";
+import { useTestimonials, TestimonialFormData } from "@/hooks/useTestimonials";
+import { TestimonialForm } from "@/components/testimonials/TestimonialForm";
+import { TestimonialGrid } from "@/components/testimonials/TestimonialGrid";
+import { TestimonialStats } from "@/components/testimonials/TestimonialStats";
 
 export default function TestimonialPage() {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { testimonials, loading, addTestimonial, updateTestimonial, deleteTestimonial } = useTestimonials();
   const [adding, setAdding] = useState(false);
-  const [newTestimonial, setNewTestimonial] = useState({
-    quote: "",
-    name: "",
-    description: "",
-  });
-  const [editingTestimonial, setEditingTestimonial] =
-    useState<Testimonial | null>(null);
-  const [editForm, setEditForm] = useState({
-    quote: "",
-    name: "",
-    description: "",
-  });
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const response = await fetch(
-          `https://gist.githubusercontent.com/TusharSahu02/6cf3a9f4c0b75370ab1f03d27747476a/raw/karrar-testimonials.json?t=${Date.now()}`
-        );
-        const data = await response.json();
-        setTestimonials(data || []);
-      } catch (error) {
-        console.error("Error fetching testimonials:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTestimonials();
-  }, []);
-
-  const handleAddTestimonial = async () => {
-    if (
-      !newTestimonial.quote.trim() ||
-      !newTestimonial.name.trim() ||
-      !newTestimonial.description.trim()
-    )
-      return;
-
+  const handleAdd = async (data: TestimonialFormData) => {
     setAdding(true);
     try {
-      const response = await fetch("/api/testimonials", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newTestimonial),
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        setTestimonials(data.testimonials);
-        setNewTestimonial({ quote: "", name: "", description: "" });
-      } else {
-        console.error("Failed to add testimonial:", data.error);
-      }
-    } catch (error) {
-      console.error("Error adding testimonial:", error);
+      await addTestimonial(data);
     } finally {
       setAdding(false);
     }
   };
 
-  const handleDeleteTestimonial = async (id: string) => {
+  const handleUpdate = async (id: string, data: TestimonialFormData) => {
+    await updateTestimonial(id, data);
+  };
+
+  const handleDelete = async (id: string) => {
     setDeletingId(id);
     try {
-      const response = await fetch("/api/testimonials", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        setTestimonials(data.testimonials);
-      } else {
-        console.error("Failed to delete testimonial:", data.error);
-      }
-    } catch (error) {
-      console.error("Error deleting testimonial:", error);
+      await deleteTestimonial(id);
     } finally {
       setDeletingId(null);
     }
-  };
-
-  const handleUpdateTestimonial = async () => {
-    if (
-      !editingTestimonial ||
-      !editForm.quote.trim() ||
-      !editForm.name.trim() ||
-      !editForm.description.trim()
-    )
-      return;
-
-    try {
-      const response = await fetch("/api/testimonials", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: editingTestimonial.id,
-          quote: editForm.quote,
-          name: editForm.name,
-          description: editForm.description,
-        }),
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        setTestimonials(data.testimonials);
-        setEditingTestimonial(null);
-        setEditForm({ quote: "", name: "", description: "" });
-      } else {
-        console.error("Failed to update testimonial:", data.error);
-      }
-    } catch (error) {
-      console.error("Error updating testimonial:", error);
-    }
-  };
-
-  const startEdit = (testimonial: Testimonial) => {
-    setEditingTestimonial(testimonial);
-    setEditForm({
-      quote: testimonial.quote,
-      name: testimonial.name,
-      description: testimonial.description,
-    });
   };
 
   return (
@@ -173,14 +61,7 @@ export default function TestimonialPage() {
                   </p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="bg-purple-50 px-4 py-2 rounded-lg border border-purple-200">
-                    <span className="text-purple-700 font-semibold">
-                      {testimonials.length}
-                    </span>
-                    <span className="text-purple-600 text-sm ml-1">
-                      Total Testimonials
-                    </span>
-                  </div>
+                  <TestimonialStats count={testimonials.length} />
                 </div>
               </div>
 
@@ -191,191 +72,18 @@ export default function TestimonialPage() {
                     Add New Testimonial
                   </h2>
                 </div>
-                <div className="space-y-4 mb-4">
-                  <div>
-                    <Label
-                      htmlFor="testimonialQuote"
-                      className="text-sm font-medium text-gray-700"
-                    >
-                      Quote
-                    </Label>
-                    <Textarea
-                      id="testimonialQuote"
-                      value={newTestimonial.quote}
-                      onChange={(e) =>
-                        setNewTestimonial({
-                          ...newTestimonial,
-                          quote: e.target.value,
-                        })
-                      }
-                      placeholder="Enter testimonial quote"
-                      className="mt-1 border-gray-300 focus:border-purple-500 focus:ring-purple-500"
-                      rows={3}
-                    />
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label
-                        htmlFor="testimonialName"
-                        className="text-sm font-medium text-gray-700"
-                      >
-                        Name
-                      </Label>
-                      <Input
-                        id="testimonialName"
-                        value={newTestimonial.name}
-                        onChange={(e) =>
-                          setNewTestimonial({
-                            ...newTestimonial,
-                            name: e.target.value,
-                          })
-                        }
-                        placeholder="Enter client name"
-                        className="mt-1 border-gray-300 focus:border-purple-500 focus:ring-purple-500"
-                      />
-                    </div>
-                    <div>
-                      <Label
-                        htmlFor="testimonialDescription"
-                        className="text-sm font-medium text-gray-700"
-                      >
-                        Description
-                      </Label>
-                      <Input
-                        id="testimonialDescription"
-                        value={newTestimonial.description}
-                        onChange={(e) =>
-                          setNewTestimonial({
-                            ...newTestimonial,
-                            description: e.target.value,
-                          })
-                        }
-                        placeholder="Enter client description/title"
-                        className="mt-1 border-gray-300 focus:border-purple-500 focus:ring-purple-500"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <Button
-                  onClick={handleAddTestimonial}
-                  disabled={adding}
-                  className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
-                >
-                  {adding ? "Adding..." : "+ Add Testimonial"}
-                </Button>
+                <TestimonialForm onSubmit={handleAdd} isLoading={adding} />
               </div>
 
               {loading ? (
                 <p>Loading testimonials...</p>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {testimonials.map((testimonial, index) => (
-                    <Card
-                      key={testimonial.id || `${testimonial.name}-${index}`}
-                      className="group hover:shadow-lg transition-all duration-200 shadow-sm border bg-white rounded-xl overflow-hidden"
-                    >
-                      <CardContent>
-                        {editingTestimonial?.id === testimonial.id ? (
-                          <div>
-                            <div className="space-y-3">
-                              <Textarea
-                                value={editForm.quote}
-                                onChange={(e) =>
-                                  setEditForm({
-                                    ...editForm,
-                                    quote: e.target.value,
-                                  })
-                                }
-                                placeholder="Testimonial quote"
-                                className="border-gray-300 focus:border-purple-500"
-                                rows={3}
-                              />
-                              <Input
-                                value={editForm.name}
-                                onChange={(e) =>
-                                  setEditForm({
-                                    ...editForm,
-                                    name: e.target.value,
-                                  })
-                                }
-                                placeholder="Client name"
-                                className="border-gray-300 focus:border-purple-500"
-                              />
-                              <Input
-                                value={editForm.description}
-                                onChange={(e) =>
-                                  setEditForm({
-                                    ...editForm,
-                                    description: e.target.value,
-                                  })
-                                }
-                                placeholder="Client description"
-                                className="border-gray-300 focus:border-purple-500"
-                              />
-                              <div className="flex gap-2 pt-2">
-                                <Button
-                                  size="sm"
-                                  onClick={handleUpdateTestimonial}
-                                  className="bg-green-600 hover:bg-green-700 text-white"
-                                >
-                                  Save
-                                </Button>
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  onClick={() => setEditingTestimonial(null)}
-                                  className="border-gray-300 text-gray-700 hover:bg-gray-50"
-                                >
-                                  Cancel
-                                </Button>
-                              </div>
-                            </div>
-                          </div>
-                        ) : (
-                          <div>
-                            <div className="mb-3">
-                              <p className="text-gray-700 italic text-sm leading-relaxed mb-3">
-                                "{testimonial?.quote}"
-                              </p>
-                              <div className="flex items-center gap-2">
-                                <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                                <h3 className="font-semibold text-gray-900">
-                                  {testimonial?.name}
-                                </h3>
-                              </div>
-                              <p className="text-sm text-gray-600 mt-1">
-                                {testimonial?.description}
-                              </p>
-                            </div>
-                            <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                              <Button
-                                variant="destructive"
-                                size="sm"
-                                onClick={() =>
-                                  handleDeleteTestimonial(testimonial.id)
-                                }
-                                disabled={deletingId === testimonial.id}
-                                className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 text-xs"
-                              >
-                                {deletingId === testimonial.id
-                                  ? "Deleting..."
-                                  : "Delete"}
-                              </Button>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => startEdit(testimonial)}
-                                className="border-purple-200 text-purple-600 hover:bg-purple-50 px-3 py-1 text-xs"
-                              >
-                                Edit
-                              </Button>
-                            </div>
-                          </div>
-                        )}
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
+                <TestimonialGrid
+                  testimonials={testimonials}
+                  onUpdate={handleUpdate}
+                  onDelete={handleDelete}
+                  deletingId={deletingId}
+                />
               )}
             </div>
           </div>

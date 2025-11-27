@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { BreadcrumbNav } from "@/components/breadcrumb-nav";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 export function SiteHeader() {
   return (
@@ -12,16 +14,22 @@ export function SiteHeader() {
           orientation="vertical"
           className="mx-2 data-[orientation=vertical]:h-4"
         />
-        <h1 className="text-base font-medium">Documents</h1>
+        <BreadcrumbNav />
         <div className="ml-auto flex items-center gap-2">
-          <Button variant="ghost" asChild size="sm" className="hidden sm:flex">
+          <Button
+            variant="outline"
+            asChild
+            size="sm"
+            className="hidden sm:flex items-center gap-2 hover:bg-primary hover:text-primary-foreground transition-colors"
+          >
             <Link
               href="https://karrardesign.vercel.app/"
               rel="noopener noreferrer"
               target="_blank"
-              className="dark:text-foreground"
+              className="flex items-center gap-2"
             >
               Visit Karrar website
+              <ArrowUpRight className="h-4 w-4" />
             </Link>
           </Button>
         </div>

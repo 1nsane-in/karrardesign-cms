@@ -12,30 +12,61 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function NewProjectPage() {
+  const router = useRouter()
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     title: "",
     slug: "",
-    number: "",
     category: "",
     service: "",
     location: "",
-    year: "",
-    area: "",
-    description: "",
-    fullDescription: "",
-    description2: "",
-    image: null as File | null
+    image: "",
+    details: {
+      category: "",
+      service: "",
+      location: "",
+      year: "",
+      area: "",
+      description: "",
+      fullDescription: "",
+      description2: "",
+      images: [] as string[]
+    }
   })
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    const { name, value } = e.target
+    if (name in formData.details) {
+      setFormData({
+        ...formData,
+        details: { ...formData.details, [name]: value }
+      })
+    } else {
+      setFormData({ ...formData, [name]: value })
+    }
   }
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFormData({ ...formData, image: e.target.files[0] })
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    
+    try {
+      const response = await fetch('/api/projects', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      
+      if (response.ok) {
+        router.push('/projects')
+      }
+    } catch (error) {
+      console.error('Error creating project:', error)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -90,7 +121,7 @@ export default function NewProjectPage() {
                       <Input
                         id="category"
                         name="category"
-                        value={formData.category}
+                        value={formData.details.category}
                         onChange={handleInputChange}
                         placeholder="Residential/Commercial"
                         className="mt-3"
@@ -101,7 +132,7 @@ export default function NewProjectPage() {
                       <Input
                         id="service"
                         name="service"
-                        value={formData.service}
+                        value={formData.details.service}
                         onChange={handleInputChange}
                         placeholder="Interior Design"
                         className="mt-3"
@@ -112,7 +143,7 @@ export default function NewProjectPage() {
                       <Input
                         id="location"
                         name="location"
-                        value={formData.location}
+                        value={formData.details.location}
                         onChange={handleInputChange}
                         placeholder="Dubai, UAE"
                         className="mt-3"
@@ -123,7 +154,7 @@ export default function NewProjectPage() {
                       <Input
                         id="year"
                         name="year"
-                        value={formData.year}
+                        value={formData.details.year}
                         onChange={handleInputChange}
                         placeholder="2024"
                         className="mt-3"
@@ -134,7 +165,7 @@ export default function NewProjectPage() {
                       <Input
                         id="area"
                         name="area"
-                        value={formData.area}
+                        value={formData.details.area}
                         onChange={handleInputChange}
                         placeholder="2,500 sq ft"
                         className="mt-3"
@@ -143,12 +174,13 @@ export default function NewProjectPage() {
                   </div>
                   
                   <div>
-                    <Label htmlFor="image">Project Image</Label>
+                    <Label htmlFor="image">Project Image URL</Label>
                     <Input
                       id="image"
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImageChange}
+                      name="image"
+                      value={formData.image}
+                      onChange={handleInputChange}
+                      placeholder="https://example.com/image.jpg"
                       className="mt-3"
                     />
                   </div>
@@ -158,7 +190,7 @@ export default function NewProjectPage() {
                     <Textarea
                       id="description"
                       name="description"
-                      value={formData.description}
+                      value={formData.details.description}
                       onChange={handleInputChange}
                       placeholder="Brief project description"
                       rows={3}
@@ -171,7 +203,7 @@ export default function NewProjectPage() {
                     <Textarea
                       id="fullDescription"
                       name="fullDescription"
-                      value={formData.fullDescription}
+                      value={formData.details.fullDescription}
                       onChange={handleInputChange}
                       placeholder="Detailed project description"
                       rows={5}
@@ -184,7 +216,7 @@ export default function NewProjectPage() {
                     <Textarea
                       id="description2"
                       name="description2"
-                      value={formData.description2}
+                      value={formData.details.description2}
                       onChange={handleInputChange}
                       placeholder="Additional project details"
                       rows={3}
@@ -192,10 +224,16 @@ export default function NewProjectPage() {
                     />
                   </div>
                   
-                  <div className="flex gap-2">
-                    <Button type="submit">Save Project</Button>
-                    <Button variant="outline">Cancel</Button>
-                  </div>
+                  <form onSubmit={handleSubmit}>
+                    <div className="flex gap-2">
+                      <Button type="submit" disabled={loading}>
+                        {loading ? 'Saving...' : 'Save Project'}
+                      </Button>
+                      <Button type="button" variant="outline" onClick={() => router.push('/projects')}>
+                        Cancel
+                      </Button>
+                    </div>
+                  </form>
                 </CardContent>
               </Card>
             </div>
