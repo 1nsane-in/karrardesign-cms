@@ -1,8 +1,8 @@
 "use client";
 
-import { type Icon } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React from "react";
 
 import {
   SidebarGroup,
@@ -18,7 +18,7 @@ export function NavMain({
   readonly items: readonly {
     title: string;
     url: string;
-    icon?: Icon;
+    icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   }[];
 }) {
   const pathname = usePathname();
