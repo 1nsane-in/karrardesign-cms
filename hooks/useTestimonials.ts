@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export interface Testimonial {
   id: string;
@@ -25,16 +25,16 @@ export const useTestimonials = () => {
       const data = await response.json();
       setTestimonials(data || []);
     } catch (error) {
-      console.error('Error fetching testimonials:', error);
+      console.error("Error fetching testimonials:", error);
     } finally {
       setLoading(false);
     }
   };
 
   const addTestimonial = async (testimonial: TestimonialFormData) => {
-    const response = await fetch('/api/testimonials', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const response = await fetch("/api/testimonials", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(testimonial),
     });
     const data = await response.json();
@@ -45,10 +45,13 @@ export const useTestimonials = () => {
     throw new Error(data.error);
   };
 
-  const updateTestimonial = async (id: string, testimonial: TestimonialFormData) => {
-    const response = await fetch('/api/testimonials', {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+  const updateTestimonial = async (
+    id: string,
+    testimonial: TestimonialFormData
+  ) => {
+    const response = await fetch("/api/testimonials", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, ...testimonial }),
     });
     const data = await response.json();
@@ -60,9 +63,9 @@ export const useTestimonials = () => {
   };
 
   const deleteTestimonial = async (id: string) => {
-    const response = await fetch('/api/testimonials', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
+    const response = await fetch("/api/testimonials", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
     });
     const data = await response.json();
